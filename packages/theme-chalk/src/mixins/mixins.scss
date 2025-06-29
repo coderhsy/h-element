@@ -1,0 +1,50 @@
+@use './config.scss' as *;
+@use './function.scss' as *;
+
+// 生成BEM规范
+// .h-icon
+@mixin b($block) {
+  $B: $namespace + $common-separator + $block;
+  //  $B 将上面的css名字 插入生成.h-icon
+  //   .class选择器
+  .#{$B} {
+    //@content 占位符插入输入的内容
+    @content;
+  }
+}
+
+// .h-button--primary
+@mixin m($modifier) {
+  $select: &;
+  $currentSelect: #{$currentSelect + $select + $modifier-separator + $modifier};
+  @at-root {
+    #{$currentSelect} {
+      @content;
+    }
+  }
+}
+
+// is-display  控制状态
+@mixin when($state) {
+  @at-root {
+    &.#{$state-prefix + $state} {
+      @content;
+    }
+  }
+}
+
+// --h-text-color:--h-text-color-regular
+@mixin set-component-css-var($name, $type) {
+  // $attribute:key
+  @each $attribute, $value in $type {
+    #{getVarCssName($name,$attribute)}: #{$value};
+  }
+}
+
+@mixin set-css-var-value() {
+  @each $type in $types {
+    &.#{bem('text','',$type)} {
+      @include css-var-from-global(('text', 'color'), ('color', $type));
+    }
+  }
+}

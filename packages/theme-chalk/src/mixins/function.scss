@@ -1,0 +1,55 @@
+@use 'sass:map';
+@use './config.scss' as config;
+
+// $mypink: map.get($colors, "mypink", "base");
+
+@function joinVarName($lists) {
+  $name: '--' + config.$namespace;
+  @each $list in $lists {
+    @if $list != '' {
+      $name: $name + '-' + $list;
+    }
+  }
+  @return $name;
+}
+
+// --h-text-color
+@function getVarName($args...) {
+  // var(joinVarName($args))如果直接放入返回的是一个字符串
+  @return var(#{joinVarName($args)});
+}
+@function getVarCssName($args...) {
+  @return #{joinVarName($args)};
+}
+// $modifier 改变
+@function bem($block, $element: '', $modifier: '') {
+  $name: config.$namespace + config.$common-separator + $block;
+  @if $element != '' {
+    $name: $name + '__' + $element;
+  }
+  @if $modifier != '' {
+    $name: $name + '--' + $modifier;
+  }
+  @return $name;
+}
+
+// $var:('text','color')元组类型
+// $gVar:('color',$type)
+// --h-text-color:var(--h-color-mypink);
+@mixin css-var-from-global($var, $gVar) {
+  $varName: joinVarName($var);
+  $gVarName: joinVarName($gVar);
+  #{$varName}: var(#{$gVarName});
+}
+
+// 获取颜色
+// --h-text-mypink:pink;
+@mixin get-css-color-value($name, $value) {
+  #{joinVarName($name)}: #{$value};
+}
+
+// 设置颜色
+@mixin set-css-var-type($colors, $type, $name) {
+  $color: map.get($colors, $type, 'base');
+  @include get-css-color-value(($name, $type), $color);
+}

@@ -1,0 +1,48 @@
+@use './mixins/mixins.scss' as *;
+@use './mixins/function.scss' as *;
+@use './common/var.scss' as *;
+
+// 默认值
+@include b(text) {
+  @include set-component-css-var('text', $text);
+}
+
+@include b(text) {
+  display: flex;
+  // cursor: pointer;
+  margin: 0;
+  padding: 0;
+  color: getVarName('text', 'color');
+  font-size: getVarName('text', 'font-size');
+  // 内容溢出换行
+  overflow-wrap: break-word;
+
+  // 是否显示省略点
+  @include when(truncated) {
+    // 只有块元素可以 不知道是否是行所有都需要转
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+  }
+
+  // 控制显示多行 也是只有块才可以
+  @include when(line-clamp) {
+    display: -webkit-box; /* 必须，将元素设置为弹性盒子 */
+    -webkit-box-orient: vertical; /* 必须，设置子元素垂直排列 */
+    overflow: hidden; /* 必须，隐藏溢出内容 */
+  }
+
+  @each $type in $types {
+    &.#{bem('text','',$type)} {
+      @include css-var-from-global(('text', 'color'), ('color', $type));
+    }
+  }
+  // 字体
+  @each $type in $sizeTypes {
+    &.#{bem('text','',$type)} {
+      @include css-var-from-global(('text', 'font-size'), ('font-size', $type));
+    }
+  }
+}

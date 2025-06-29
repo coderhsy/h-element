@@ -1,0 +1,38 @@
+@use 'sass:map';
+
+@use './mixins/mixins.scss' as *;
+@use './mixins/function.scss' as *;
+@use './common/var.scss' as *;
+@use './mixins/button' as *;
+
+@include b(button) {
+  @include set-component-css-var('button', $button);
+}
+
+@include b(button) {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+  outline: none;
+  box-sizing: border-box;
+  transition: 0.1s;
+  text-align: center;
+  background-color: getVarName('button', 'bg-color');
+  // border-color: getVarName('button', 'bg-color');
+  color: white;
+  border: 1px solid #dcdfe6;
+  outline: none;
+  height: map.get($input-height, 'default');
+  width: 100px;
+  font-weight: 500;
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+
+  @each $type in $types {
+    &.#{bem('button','',$type)} {
+      @include css-var-from-global(('button', 'bg-color'), ('color', $type));
+    }
+  }
+}

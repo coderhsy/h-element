@@ -1,0 +1,6 @@
+// !default 只有当变量未被赋值时才会使其变量 允许覆盖
+$namespace: 'h' !default;
+$common-separator: '-' !default;
+$element-separator: '__' !default;
+$modifier-separator: '--' !default;
+$state-prefix: 'is-' !default;

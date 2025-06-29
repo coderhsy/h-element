@@ -1,0 +1,31 @@
+@use 'sass:map';
+
+$button: () !default;
+$button: map.deep-merge(
+  (
+    'bg-color': getVarName('bg-color', 'default'),
+  ),
+  $button
+);
+$button-value: () !default;
+$button-value: map.deep-merge(
+  (
+    'default': white,
+  ),
+  $button-value
+);
+
+$common-component-size: () !default;
+$common-component-size: map.deep-merge(
+  (
+    'large': 40px,
+    'default': 32px,
+    'samll': 24px,
+  ),
+  $common-component-size
+);
+// 高
+$input-height: () !default;
+$input-height: map.deep-merge($common-component-size, $input-height);
+
+// border-color

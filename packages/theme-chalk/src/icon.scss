@@ -1,0 +1,18 @@
+@use "./mixins/mixins.scss" as *;
+
+@include b(icon) {
+  height: 1em;
+  width: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  //   继承
+  color: inherit;
+  font-size: inherit;
+}
+
+svg {
+  width: 1em;
+  height: 1em;
+}

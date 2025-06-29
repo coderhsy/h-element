@@ -1,0 +1,73 @@
+@use 'sass:map';
+@use '../mixins/function.scss' as *;
+
+$types: primary, success, warning, danger, error, info, mypink;
+$sizeTypes: large, small, default;
+$sizes: () !default;
+$sizes: map.deep-merge(
+  (
+    'small': (
+      'base': 12px,
+    ),
+    'default': (
+      'base': 14px,
+    ),
+    'large': (
+      'base': 18px,
+    ),
+  ),
+  $sizes
+);
+$colors: () !default;
+// 最少需要两个参数 所以先定义一个空的在传进去合并
+$colors: map.deep-merge(
+  (
+    // 如果不传就是默认值
+    'white': white,
+    'black': black,
+    'primary': (
+      'base': #409eff,
+    ),
+    'success': (
+      'base': #67c23a,
+    ),
+    'warning': (
+      'base': #e6a23c,
+    ),
+    'danger': (
+      'base': #f56c6c,
+    ),
+    'error': (
+      'base': #f14c4c,
+    ),
+    'info': (
+      'base': #909399,
+    ),
+    'mypink': (
+      'base': #ffa0ba,
+    )
+  ),
+  $colors
+);
+
+// 添加文字大小和颜色默认值
+$text: () !default;
+$text: map.deep-merge(
+  (
+    'color': getVarName('color', 'regular'),
+    'font-size': getVarName('font-size', 'default'),
+  ),
+  $text
+);
+$text-value: () !default;
+$text-value: map.deep-merge(
+  (
+    'regular': map.get($colors, 'black'),
+    // 'default': map.get($sizes, 'default', 'base'),
+    'bg-default': white,
+  ),
+  $text-value
+);
+
+// $bg-color: () !default;
+// $bg-color: map.deep-merge($bg-color);

@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "types": ["vue"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "composite": true,
+    "module": "ESNext", //打包模块的类型
+    "noImplicitAny": true, //支持默认类型默认可以是any
+    "removeComments": true, //删除注释
+    "moduleResolution": "node", //按照node模块解析
+    "esModuleInterop": true,
+    "jsx": "preserve",
+    "noLib": false, //不处理类库
+    "target": "ES6",
+    "sourceMap": true,
+    "lib": ["ESNext", "DOM"],
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "strict": false,
+    "skipLibCheck": true
+  },
+  "exclude": ["node_modules", "**/_tests_", "dist/**"]
+}

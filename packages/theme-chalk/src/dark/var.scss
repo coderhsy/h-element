@@ -1,0 +1,20 @@
+@use '../mixins/function.scss' as *;
+@use '../common/var.scss' as *;
+@use '../mixins/mixins.scss' as *;
+@use '../mixins/button' as *;
+
+html {
+  @each $type in $types {
+    @include set-css-var-type($colors, $type, 'color');
+  }
+
+  @each $size in $sizeTypes {
+    @include set-css-var-type($sizes, $size, 'font-size');
+  }
+
+  // button
+  // color
+  @include set-component-css-var('color', $text-value);
+  //bg-color
+  @include set-component-css-var('bg-color', $button-value);
+}
