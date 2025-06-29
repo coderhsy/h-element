@@ -33,7 +33,8 @@
   }
 }
 
-// --h-text-color:--h-text-color-regular
+// --h-text-color:white
+// --h-text-color:var(--h-color-regular)
 @mixin set-component-css-var($name, $type) {
   // $attribute:key
   @each $attribute, $value in $type {

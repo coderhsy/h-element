@@ -1,4 +1,5 @@
 @use 'sass:map';
+
 @use '../mixins/function.scss' as *;
 
 $types: primary, success, warning, danger, error, info, mypink;
@@ -62,9 +63,9 @@ $text: map.deep-merge(
 $text-value: () !default;
 $text-value: map.deep-merge(
   (
-    'regular': map.get($colors, 'black'),
+    'color-regular': map.get($colors, 'black'),
     // 'default': map.get($sizes, 'default', 'base'),
-    'bg-default': white,
+    // 'bg-default': white,,,,
   ),
   $text-value
 );

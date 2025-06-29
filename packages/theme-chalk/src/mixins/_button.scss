@@ -1,16 +1,23 @@
 @use 'sass:map';
 
+@use '../mixins/function.scss' as *;
+
 $button: () !default;
 $button: map.deep-merge(
   (
+    'color': getVarName('color', 'regular'),
     'bg-color': getVarName('bg-color', 'default'),
+    'border-color': getVarName('border-color', 'default'),
   ),
   $button
 );
+
 $button-value: () !default;
 $button-value: map.deep-merge(
   (
-    'default': white,
+    // 'color-default': black,
+    'bg-color-default': white,
+    'border-color-default': #dcdfe6
   ),
   $button-value
 );

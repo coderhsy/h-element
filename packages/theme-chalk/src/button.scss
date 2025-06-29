@@ -20,9 +20,8 @@
   transition: 0.1s;
   text-align: center;
   background-color: getVarName('button', 'bg-color');
-  // border-color: getVarName('button', 'bg-color');
-  color: white;
-  border: 1px solid #dcdfe6;
+  color: getVarName('button', 'color');
+  border: 1px solid getVarName('button', 'border-color');
   outline: none;
   height: map.get($input-height, 'default');
   width: 100px;
@@ -30,9 +29,9 @@
   font-size: 14px;
   font-family: Arial, Helvetica, sans-serif;
 
-  @each $type in $types {
-    &.#{bem('button','',$type)} {
-      @include css-var-from-global(('button', 'bg-color'), ('color', $type));
-    }
-  }
+  // @each $type in $types {
+  //   &.#{bem('button','',$type)} {
+  //     @include css-var-from-global(('button', 'bg-color'), ('color', $type));
+  //   }
+  // }
 }

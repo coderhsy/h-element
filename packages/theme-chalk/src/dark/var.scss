@@ -12,9 +12,10 @@ html {
     @include set-css-var-type($sizes, $size, 'font-size');
   }
 
+  // text
+  @include set-component-css-var('', $text-value);
+
   // button
   // color
-  @include set-component-css-var('color', $text-value);
-  //bg-color
-  @include set-component-css-var('bg-color', $button-value);
+  @include set-component-css-var('', $button-value);
 }
