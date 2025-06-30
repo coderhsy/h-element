@@ -29,9 +29,11 @@
   font-size: 14px;
   font-family: Arial, Helvetica, sans-serif;
 
-  // @each $type in $types {
-  //   &.#{bem('button','',$type)} {
-  //     @include css-var-from-global(('button', 'bg-color'), ('color', $type));
-  //   }
-  // }
+  // 设置颜色
+  @each $type in $types {
+    // .h-button--info
+    @include m($type) {
+      @include button-variant($type);
+    }
+  }
 }

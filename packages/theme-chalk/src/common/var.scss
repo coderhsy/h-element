@@ -65,7 +65,6 @@ $text-value: map.deep-merge(
   (
     'color-regular': map.get($colors, 'black'),
     // 'default': map.get($sizes, 'default', 'base'),
-    // 'bg-default': white,,,,
   ),
   $text-value
 );

@@ -21,7 +21,7 @@ import HButton from '@hsy/components/botton'
       <h-button type="primary" style="margin-bottom: 30px"
         >Hello world</h-button
       >
-      <el-button>Hello world</el-button>
+      <el-button type="primary">Hello world</el-button>
     </div>
   </div>
 </template>

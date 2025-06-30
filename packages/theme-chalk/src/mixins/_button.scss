@@ -2,6 +2,8 @@
 
 @use '../mixins/function.scss' as *;
 
+// 默认值
+// --h-color-regular:--h-text-color
 $button: () !default;
 $button: map.deep-merge(
   (
@@ -12,12 +14,14 @@ $button: map.deep-merge(
   $button
 );
 
+//赋值默认值
+// --h-bg-color-default:white
 $button-value: () !default;
 $button-value: map.deep-merge(
   (
-    // 'color-default': black,
+    'color-white': white,
     'bg-color-default': white,
-    'border-color-default': #dcdfe6
+    'border-color-default': #dcdfe6,
   ),
   $button-value
 );
@@ -36,3 +40,48 @@ $input-height: () !default;
 $input-height: map.deep-merge($common-component-size, $input-height);
 
 // border-color
+
+// 添加颜色 hover...交互颜色
+@mixin button-variant($type) {
+  $button-color-type: (
+    '': (
+      'color': (
+        'color',
+        'white',
+      ),
+      'bg-color': (
+        'color',
+        $type,
+      ),
+      'border-color': (
+        'color',
+        $type,
+      ),
+    ),
+    'hover': (
+      'color': (
+        'color',
+        'white',
+      ),
+      'bg-color': (
+        'color',
+        $type,
+        'light-3',
+      ),
+      'border-color': (
+        'color',
+        $type,
+      ),
+    ),
+  );
+
+  // 添加var()
+  // $key:'','hover'  $value( 'text-color':() )
+  @each $key, $value in $button-color-type {
+    // $type: 'text-color bg-color'  $list:'text-color' white
+    @each $type, $list in $value {
+      // --h-button-text-color: var(--h-color-white);
+      @include css-var-from-global(('button', $key, $type), $list);
+    }
+  }
+}
