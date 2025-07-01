@@ -1,4 +1,6 @@
 @use 'sass:map';
+@use 'sass:math';
+@use 'sass:color';
 
 @use '../mixins/function.scss' as *;
 
@@ -50,6 +52,42 @@ $colors: map.deep-merge(
   ),
   $colors
 );
+
+// 颜色混合
+@mixin set-color-mix-level($type, $number, $mode: 'light', $mix-color) {
+  // 再$colors上进行合并添加
+  /*
+    $colors:(
+      'primary':(
+        'base':#409eff,
+        'light-3':#79bbff
+        'light-4':#79bbff
+      )
+    )
+  */
+
+  $colors: map.deep-merge(
+    (
+      $type: (
+        // color.mix(red,blue,10) 对两种颜色进行混合
+        // math.percentage()将结果转换为%
+        '#{$mode}-#{$number}':
+          color.mix(
+            $mix-color,
+            map.get($colors, $type, 'base'),
+            math.percentage(math.div($number, 10))
+          ),
+      ),
+    ),
+    $colors
+  ) !global;
+}
+
+@each $type in $types {
+  @for $i from 1 through 9 {
+    @include set-color-mix-level($type, $i, 'light', white);
+  }
+}
 
 // 添加文字大小和颜色默认值
 $text: () !default;

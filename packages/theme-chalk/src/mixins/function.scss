@@ -1,4 +1,5 @@
 @use 'sass:map';
+
 @use './config.scss' as config;
 
 // $mypink: map.get($colors, "mypink", "base");
@@ -50,6 +51,14 @@
 
 // 设置颜色
 @mixin set-css-var-type($colors, $type, $name) {
-  $color: map.get($colors, $type, 'base');
-  @include get-css-color-value(($name, $type), $color);
+  @include get-css-color-value(($name, $type), map.get($colors, $type, 'base'));
+
+  // 在root添加light颜色
+  //--h-color-mypink-light-3:
+  @if map.get($colors, 'white') {
+    @each $i in (3, 5, 7, 8, 9) {
+      $color: map.get($colors, $type, 'light-#{$i}');
+      @include get-css-color-value(('color', $type, 'light', $i), $color);
+    }
+  }
 }

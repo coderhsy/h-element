@@ -4,7 +4,7 @@ import HIcon from '@hsy/components/icon'
 import HText from '@hsy/components/text'
 import '@hsy/theme-chalk/src/index.scss'
 
-import 'element-plus/dist/index.css'
+// import 'element-plus/dist/index.css'
 
 const plugins = [HIcon, HText]
 

@@ -71,6 +71,7 @@ $input-height: map.deep-merge($common-component-size, $input-height);
       'border-color': (
         'color',
         $type,
+        'light-3',
       ),
     ),
   );
