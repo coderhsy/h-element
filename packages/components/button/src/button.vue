@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, watch } from 'vue'
+import { computed, useTemplateRef } from 'vue'
 
 import HIcon from '@hsy/components/icon'
 import { createNamespace } from '@hsy/utils/create'
@@ -9,6 +9,8 @@ import type { IBotton } from './button'
 defineOptions({
   name: 'h-button',
 })
+
+const buttonRef = useTemplateRef('_ref')
 
 const bem = createNamespace('button')
 const {
@@ -28,8 +30,7 @@ const style = computed(() => {
     bem.n(),
     bem.m(type),
     bem.m(size),
-    bem.is('loading', loading),
-    bem.is('disables', disabled),
+    bem.is('disabled', disabled || loading),
   ]
 })
 
@@ -41,6 +42,12 @@ const _props = computed(() => {
   }
   return {}
 })
+
+defineExpose({
+  disabled,
+  buttonRef,
+  loading,
+})
 </script>
 
 <template>
@@ -49,11 +56,12 @@ const _props = computed(() => {
     :is="tag"
     :class="style"
     :style="{ 'border-radius': round }"
+    ref="_ref"
   >
     <template v-if="loading">
       <!-- $slots.loading 是否实现了loading插槽 -->
       <slot v-if="$slots.loading" name="loading"></slot>
-      <h-icon v-else :color="iconColor">
+      <h-icon v-else :color="iconColor" :class="bem.is('loading', loading)">
         <component :is="loadingIcon"></component>
       </h-icon>
     </template>

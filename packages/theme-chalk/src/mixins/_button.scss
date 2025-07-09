@@ -22,6 +22,8 @@ $button-value: map.deep-merge(
     'color-white': white,
     'bg-color-default': white,
     'border-color-default': #dcdfe6,
+    'button-disabled-color': rgba(255, 255, 255, 0.5),
+    'button-disabled-bg-color': rgba(255, 255, 255, 0.5),
   ),
   $button-value
 );

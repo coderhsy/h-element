@@ -12,7 +12,7 @@ import { Alarm } from '@vicons/ionicons5'
     </h-icon> -->
     <!-- <component :is="Alarm"></component> -->
     <div class="box">
-      <h-text>
+      <h-text :line-clamp="2" :truncated="true">
         The -webkit-line-clamp CSS property allows limiting of the contents of a
         block to the specified number of lines.</h-text
       >
@@ -23,7 +23,7 @@ import { Alarm } from '@vicons/ionicons5'
       <h-button type="primary" style="margin-bottom: 30px"
         >Hello world</h-button
       >
-      <el-button type="primary">Hello world</el-button>
+      <el-button type="primary" :loading="true">lo</el-button>
       <h-button type="mypink" :loading="true"> </h-button>
       <div class="item"></div>
     </div>

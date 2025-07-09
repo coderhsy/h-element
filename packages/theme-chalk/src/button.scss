@@ -13,6 +13,7 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 
   cursor: pointer;
   outline: none;
@@ -33,6 +34,37 @@
     background-color: getVarName('button', 'hover', 'bg-color');
     border: 1px solid getVarName('button', 'hover', 'border-color');
     outline: none;
+  }
+
+  @include when(disabled) {
+    &,
+    &:hover {
+      cursor: not-allowed;
+      background-image: none;
+      // color: getVarName('button', 'disabled', 'color');
+      // background-color: getVarName('button', 'disabled', 'bg-color');
+      // border-color: getVarName('button', 'disabled', 'border-color');
+    }
+  }
+
+  @include when(loading) {
+    position: absolute;
+    left: 10px;
+    top: 22px;
+    // 让鼠标 / 触摸事件忽略当前元素，直接作用于下层元素。 使元素不可点击、不可选中，但视觉样式不变。
+    pointer-events: none;
+
+    // &:before {
+    //   z-index: 1;
+    //   pointer-events: none;
+    //   content: '';
+    //   position: absolute;
+    //   left: -1px;
+    //   top: -1px;
+    //   right: -1px;
+    //   bottom: -1px;
+    //   border-radius: inherit;
+    // }
   }
 
   // 设置颜色
