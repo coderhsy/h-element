@@ -11,5 +11,4 @@ const plugins = [HIcon, HText]
 // 注册全局组件
 const app = createApp(App)
 plugins.forEach((comp) => app.use(comp))
-console.log(app._context.components)
 app.mount('#app')

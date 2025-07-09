@@ -1,3 +1,5 @@
+import type { Component } from 'vue'
+
 type TType =
   | 'primary'
   | 'success'
@@ -13,4 +15,9 @@ export interface IBotton {
   size?: TSize
   round?: string
   tag?: string
+  icon?: Component
+  iconColor?: string
+  loading?: boolean
+  loadingIcon?: Component
+  disabled?: boolean
 }
