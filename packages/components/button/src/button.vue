@@ -4,7 +4,7 @@ import { computed, useTemplateRef } from 'vue'
 import HIcon from '@hsy/components/icon'
 import { createNamespace } from '@hsy/utils/create'
 import LoadingVue from './loading.vue'
-import type { IBotton } from './button'
+import type { IButton, IButtonEmit } from './button'
 
 defineOptions({
   name: 'h-button',
@@ -15,7 +15,7 @@ const buttonRef = useTemplateRef('_ref')
 const bem = createNamespace('button')
 const {
   type,
-  size,
+  size = 'default',
   round = '5px',
   tag = 'button',
   loading,
@@ -23,7 +23,9 @@ const {
   iconColor,
   loadingIcon = LoadingVue,
   disabled,
-} = defineProps<IBotton>()
+} = defineProps<IButton>()
+
+const emit = defineEmits<IButtonEmit>()
 
 const style = computed(() => {
   return [
@@ -42,6 +44,13 @@ const _props = computed(() => {
   }
   return {}
 })
+function handleClick(e: Event) {
+  if (disabled || loading) {
+    e.stopPropagation()
+    return
+  }
+  emit('click', e)
+}
 
 defineExpose({
   disabled,
@@ -57,6 +66,7 @@ defineExpose({
     :class="style"
     :style="{ 'border-radius': round }"
     ref="_ref"
+    @click="handleClick"
   >
     <template v-if="loading">
       <!-- $slots.loading 是否实现了loading插槽 -->

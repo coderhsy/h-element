@@ -3,6 +3,10 @@
 import { ElButton, ElText } from 'element-plus'
 import { HButton } from '@hsy/components'
 import { Alarm } from '@vicons/ionicons5'
+
+function buttonClick(e: MouseEvent) {
+  console.log(e.button)
+}
 </script>
 
 <template>
@@ -20,12 +24,13 @@ import { Alarm } from '@vicons/ionicons5'
         The -webkit-line-clamp CSS property allows limiting of the contents of a
         block to the specified number of lines.</el-text
       >
-      <h-button type="primary" style="margin-bottom: 30px"
-        >Hello world</h-button
+      <h-button type="primary" size="large" style="margin-bottom: 30px"
+        >Hello worldaaaaaaaaaaaaaa</h-button
       >
-      <el-button type="primary" :loading="true">lo</el-button>
-      <h-button type="mypink" :loading="true"> </h-button>
-      <div class="item"></div>
+      <el-button type="primary" size="default">loaaaaaaaaaaaaaaaaaaa</el-button>
+      <h-button type="mypink" size="default" style="margin-left: 10px">
+        aa
+      </h-button>
     </div>
   </div>
 </template>

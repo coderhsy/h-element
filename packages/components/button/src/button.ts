@@ -10,7 +10,7 @@ type TType =
   | ''
 type TSize = 'large' | 'default' | 'small'
 
-export interface IBotton {
+export interface IButton {
   type?: TType
   size?: TSize
   round?: string
@@ -21,3 +21,9 @@ export interface IBotton {
   loadingIcon?: Component
   disabled?: boolean
 }
+
+export interface IButtonEmit {
+  click: (e: Event) => Event
+}
+
+// export type ButtonEmits = typeof IButtonEmit

@@ -4,6 +4,7 @@
 @use './mixins/function.scss' as *;
 @use './common/var.scss' as *;
 @use './mixins/button' as *;
+@use './mixins/function.scss' as *;
 
 @include b(button) {
   @include set-component-css-var('button', $button);
@@ -13,7 +14,6 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  position: relative;
 
   cursor: pointer;
   outline: none;
@@ -24,11 +24,14 @@
   color: getVarName('button', 'color');
   border: 1px solid getVarName('button', 'border-color');
   outline: none;
-  height: map.get($input-height, 'default');
-  width: 100px;
+  // height: map.get($input-height, 'default');
+  // width: 100px;
   font-weight: 500;
-  font-size: 14px;
   font-family: Arial, Helvetica, sans-serif;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  -webkit-appearance: none;
 
   &:hover {
     background-color: getVarName('button', 'hover', 'bg-color');
@@ -48,9 +51,12 @@
   }
 
   @include when(loading) {
-    position: absolute;
-    left: 10px;
-    top: 22px;
+    position: relative;
+    top: 1.0667vw;
+    margin: 0px 5px 0 0px;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+
     // 让鼠标 / 触摸事件忽略当前元素，直接作用于下层元素。 使元素不可点击、不可选中，但视觉样式不变。
     pointer-events: none;
 
@@ -72,6 +78,15 @@
     // .h-button--info
     @include m($type) {
       @include button-variant($type);
+    }
+  }
+
+  // 大小
+  @each $size in (large, small, default) {
+    @include m($size) {
+      height: getVarName('font-size', $size);
+      padding: getVarName('font-size', $size);
+      font-size: getVarName('button', 'size', $size);
     }
   }
 }

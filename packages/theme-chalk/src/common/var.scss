@@ -109,3 +109,13 @@ $text-value: map.deep-merge(
 
 // $bg-color: () !default;
 // $bg-color: map.deep-merge($bg-color);
+
+$component-size: () !default;
+$component-size: map.deep-merge(
+  (
+    'large': 18px,
+    'small': 11px,
+    'default': 14px,
+  ),
+  $component-size
+);

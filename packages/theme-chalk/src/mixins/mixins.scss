@@ -16,7 +16,7 @@
 // .h-button--primary
 @mixin m($modifier) {
   $select: &;
-  $currentSelect: #{$select + $modifier-separator + $modifier};
+  $currentSelect: $select + $modifier-separator + $modifier;
   @at-root {
     #{$currentSelect} {
       @content;
